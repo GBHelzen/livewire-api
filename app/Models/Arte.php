@@ -18,10 +18,6 @@ class Arte extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'artist_id' => 'integer'
-    ];
-
     protected $guarded = [];
 
     public function artistas(): BelongsToMany

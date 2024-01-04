@@ -6,7 +6,7 @@
                     {{-- Barra de pesquisa (filtro de artes por nome) --}}
                     <div class="col-span-1 px-4">
                         <label for="" class="sm:text-sm text-sm font-medium text-gray-700">Nome da Arte</label>
-                        <input wire:model="search" type="text" placeholder="Pesquise pela arte" class="w-full sm:text-sm">
+                        <input wire:model.live="search" type="text" placeholder="Pesquise pela arte" class="w-full sm:text-sm">
                     </div>
                 </div>
             </div>

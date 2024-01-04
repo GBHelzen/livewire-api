@@ -5,9 +5,8 @@
                 <div class="grid grid-cols-3 gap-1">
                     {{-- Barra de pesquisa (filtro de artistas por nome) --}}
                     <div class="col-span-1 px-4">
-                        <label for="" class="sm:text-sm text-sm font-medium text-gray-700">Nome do Artista</label>
-                        <x-input wire:model="search" type="text" placeholder="Pesquise pelo artista" class="w-full sm:text-sm" >
-                        </x-input>
+                        <label for="" class="sm:text-sm text-sm font-medium text-gray-700">Nome do(a) Artista</label>
+                        <input wire:model.live="search" type="text" placeholder="Pesquise pelo artista" class="w-full sm:text-sm" >
                     </div>
                 </div>
             </div>
@@ -28,7 +27,7 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($artistas as $artista)
                             <tr>
-                                
+
                                 {{-- Nome + Nacionalidade --}}
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
