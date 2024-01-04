@@ -21,7 +21,7 @@ class IndexArtes extends Component
         return view('livewire.artes.index-artes',
         [
             'artes' => Arte::where('title', 'ilike', '%' . $this->search . '%')
-                ->orderBy('objectID', 'desc')->paginate(5),
+                ->orderBy('objectID', 'desc')->paginate(4),
         ]);
     }
 }

@@ -22,7 +22,7 @@ class IndexArtistas extends Component
         return view('livewire.artistas.index-artistas', 
             [
                 'artistas' => Artista::where('displayName', 'ilike', '%' . $this->search . '%')
-                    ->orderBy('constituentID', 'desc')->paginate(5),
+                    ->orderBy('constituentID', 'desc')->paginate(4),
             ]
         );
     }
