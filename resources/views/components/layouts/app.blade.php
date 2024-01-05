@@ -13,6 +13,9 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://www.moma.org/&size=16">
+
 
 
         <!-- Scripts -->
