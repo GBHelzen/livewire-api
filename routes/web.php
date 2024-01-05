@@ -2,8 +2,6 @@
 
 use App\Livewire\Artes\IndexArtes;
 use App\Livewire\Artistas\IndexArtistas;
-use App\Livewire\Artistas\ShowArtista;
-use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/counter', Counter::class);
 
 // Controller Artista Livewire
 Route::get('/artistas', IndexArtistas::class)->name('artistas.index');

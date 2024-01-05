@@ -16,13 +16,6 @@ return new class extends Migration
             $table->integer('objectID')->unique();
             $table->string('title', 3000);
             $table->string('constituentID', 3000);
-            // $table->foreign('artist')->references('displayName')->on('artists');
-            // $table->foreign('constituentID')->references('constituentID')->on('artistas');
-            // $table->foreign('artistBio')->references('artistBio')->on('artists');
-            // $table->foreign('nationality')->references('nationality')->on('artists');
-            // $table->foreign('beginDate')->references('beginDate')->on('artists');
-            // $table->foreign('endDate')->references('endDate')->on('artists');
-            // $table->foreign('gender')->references('gender')->on('artists');
             $table->string('date')->nullable();
             $table->string('medium', 3000)->nullable();
             $table->string('dimensions', 3000)->nullable();
