@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 // Controller Artista Livewire
-Route::get('/artistas', IndexArtistas::class)->name('artistas.index');
+Route::get('/', IndexArtistas::class)->name('artistas.index');
 Route::get('/artistas/{constituentID}', [IndexArtistas::class, 'show'])->name('artistas.show');
 
 // Controller Artes Livewire
