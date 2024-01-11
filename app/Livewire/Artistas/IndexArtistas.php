@@ -10,10 +10,19 @@ class IndexArtistas extends Component
     public $displayName;
     public $artista = null;
     public $search = '';
-
-    public function show(Artista $artista, string|int $constituentID)
+    
+        public function show(Artista $artista, string|int $constituentID)
     {
-        $artista = Artista::find($constituentID);
+        $artista = Artista::findOrFail($constituentID, 
+        [
+            'constituentID',
+            'displayName',
+            'artistBio',
+            'nationality',
+            'beginDate',
+            'endDate'
+        ]);
+
         return view ('livewire.artistas.show-artista', compact('artista'));
     }
 
@@ -21,7 +30,15 @@ class IndexArtistas extends Component
     {
         return view('livewire.artistas.index-artistas', 
             [
-                'artistas' => Artista::where('displayName', 'ilike', '%' . $this->search . '%')
+                'artistas' => Artista::select([
+                    'constituentID',
+                    'displayName',
+                    'artistBio',
+                    'nationality',
+                    'beginDate',
+                    'endDate'
+                    ])
+                    ->where('displayName', 'ilike', '%' . $this->search . '%')
                     ->orderBy('constituentID', 'desc')->paginate(4),
             ]
         );
