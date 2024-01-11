@@ -11,7 +11,7 @@ class IndexArtistas extends Component
     public $artista = null;
     public $search = '';
     
-        public function show(Artista $artista, string|int $constituentID)
+    public function show(Artista $artista, string|int $constituentID)
     {
         $artista = Artista::findOrFail($constituentID, 
         [
@@ -19,8 +19,6 @@ class IndexArtistas extends Component
             'displayName',
             'artistBio',
             'nationality',
-            'beginDate',
-            'endDate'
         ]);
 
         return view ('livewire.artistas.show-artista', compact('artista'));
@@ -31,12 +29,11 @@ class IndexArtistas extends Component
         return view('livewire.artistas.index-artistas', 
             [
                 'artistas' => Artista::select([
-                    'constituentID',
-                    'displayName',
-                    'artistBio',
-                    'nationality',
-                    'beginDate',
-                    'endDate'
+                        'constituentID',
+                        'displayName',
+                        'nationality',
+                        'beginDate',
+                        'endDate'
                     ])
                     ->where('displayName', 'ilike', '%' . $this->search . '%')
                     ->orderBy('constituentID', 'desc')->paginate(4),
