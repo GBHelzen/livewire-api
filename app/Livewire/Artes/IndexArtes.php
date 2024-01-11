@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Artes;
 
+use App\Http\Resources\ArteResource;
 use App\Models\Arte;
 use Livewire\Component;
 
@@ -10,6 +11,23 @@ class IndexArtes extends Component
     public $title;
     public $arte = null;
     public $search = '';
+
+
+    public function teste2(string|int $objectID)
+    {
+        $arte = Arte::findOrFail($objectID);
+        
+        $teste = new ArteResource($arte);
+        return ($teste);
+    }
+
+    public function teste()
+    {
+        $artes = Arte::paginate(2);
+        
+        $teste = ArteResource::collection($artes);
+        return ($teste);
+    }
 
     public function show(Arte $arte, string|int $objectID)
     {
@@ -27,17 +45,14 @@ class IndexArtes extends Component
     
     public function render()
     {
+        $artes = Arte::where('title', 'ilike', '%' . $this->search . '%')
+            ->orderBy('objectID', 'desc')->paginate(4);
+
+        $teste = ArteResource::collection($artes);
+
         return view('livewire.artes.index-artes',
             [
-                'artes' => Arte::select([
-                        'objectID',
-                        'title',
-                        'classification',
-                        'medium',
-                        'department'
-                    ])
-                    ->where('title', 'ilike', '%' . $this->search . '%')
-                    ->orderBy('objectID', 'desc')->paginate(4),
+                'artes' => $teste
             ]
         );
     }

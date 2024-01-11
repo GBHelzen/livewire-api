@@ -19,6 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/teste/{constituentID}', [IndexArtistas::class, 'teste2'])->name('artistas.tshow');
+Route::get('/teste', [IndexArtistas::class, 'teste'])->name('artistas.teste');
+
+
+Route::get('/teste2/{objectID}', [IndexArtes::class, 'teste2'])->name('artes.tshow');
+Route::get('/teste2', [IndexArtes::class, 'teste'])->name('artes.teste');
+
 // Controller Artista Livewire
 Route::get('/', IndexArtistas::class)->name('artistas.index');
 Route::get('/artistas/{constituentID}', [IndexArtistas::class, 'show'])->name('artistas.show');

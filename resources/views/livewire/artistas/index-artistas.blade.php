@@ -26,6 +26,7 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($artistas as $artista)
+                            
                             <tr>
 
                                 {{-- Nome + Nacionalidade --}}
