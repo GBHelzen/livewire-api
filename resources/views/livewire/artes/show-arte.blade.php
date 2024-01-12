@@ -102,7 +102,7 @@
                 <div class="flex items-center">
                     <div class="ml-4">
                         <div class="text-sm font-medium text-gray-900">
-                            @foreach ($arte->artistas as $artista)
+                            @foreach ($pivot as $artista)
                                     <div class="p-2 flex items-right">
                                         <a href="{{ route('artistas.show', $artista->constituentID) }}"> {{ $artista->displayName }} </a>
                                             <a href="{{ route('artistas.show', $artista->constituentID) }}" class="px-2">

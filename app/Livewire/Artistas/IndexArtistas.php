@@ -3,7 +3,6 @@
 namespace App\Livewire\Artistas;
 
 use App\Http\Resources\ArtistaResource;
-use App\Models\Arte;
 use App\Models\Artista;
 use Livewire\Component;
 
@@ -15,21 +14,20 @@ class IndexArtistas extends Component
 
     public function teste2(string|int $constituentID)
     {
-        $artista = Artista::findOrFail($constituentID);
+        $artista = new ArtistaResource(Artista::findOrFail($constituentID));
         
-        $teste = (new ArtistaResource($artista));
-        dd ($teste);
+        dd ($artista);
     }
 
     public function teste()
     {
-        $artistas = $artistas = Artista::with('artes')->paginate(1); 
+        $artistas = Artista::with('artes')->paginate(1); 
         $teste = (ArtistaResource::collection($artistas));
         dd ($teste);
     }
     
-    public function show(Artista $artista, Arte $arte, string|int $constituentID)
-    {   
+    public function show(Artista $artista, string|int $constituentID)
+    {  
         $artista = Artista::findOrFail($constituentID, 
         [
             'constituentID',
@@ -38,13 +36,9 @@ class IndexArtistas extends Component
             'nationality',
         ]);
 
-        return view ('livewire.artistas.show-artista', compact('artista'));
-        
-        // $artista = Artista::findOrFail($constituentID);
-        
-        // $teste = (new ArtistaResource($artista))->resolve();
+        $pivot = $artista->artes()->select('objectID','title')->get();
 
-        // return view ('livewire.artistas.show-artista', ['artista' => $teste]);
+        return view ('livewire.artistas.show-artista', compact('artista', 'pivot'));
     }
 
     public function render()
@@ -60,7 +54,8 @@ class IndexArtistas extends Component
                         'endDate'
                     ])
                     ->where('displayName', 'ilike', '%' . $this->search . '%')
-                    ->orderBy('constituentID', 'desc')->paginate(4),
+                    ->orderBy('constituentID', 'desc')
+                    ->paginate(4),
             ]
         );
 
@@ -74,5 +69,6 @@ class IndexArtistas extends Component
         //         'artistas' => $teste
         //     ]
         // );
+        
     }
 }

@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-        {{-- {{dd($artista)}} --}}
+        
         <tr>
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
@@ -64,7 +64,7 @@
                 <div class="flex items-center">
                     <div class="ml-4">
                         <div class="text-sm font-medium text-gray-900">
-                            @foreach ($artista->artes as $arte)
+                            @foreach ($pivot as $arte)
                                     <div class="p-2 flex items-right">
                                         <a href="{{ route('artes.show', $arte->objectID) }}"> {{ $arte->title }} </a>
                                             <a href="{{ route('artes.show', $arte->objectID) }}" class="px-2">

@@ -21,11 +21,6 @@ class ArtistaResource extends JsonResource
             'Nacionalidade' => $this->nationality,
             'Nascimento' => $this->beginDate,
             'Falescimento' => $this->endDate,
-            'Artes' => $this->whenPivotLoaded('arte_artista', function () {
-                return [
-                    'ID da Arte' => $this->pivot->arte_objectID,
-                ];
-            }),
         ];
     }
 }

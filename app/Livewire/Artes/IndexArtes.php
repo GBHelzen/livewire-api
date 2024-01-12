@@ -15,15 +15,14 @@ class IndexArtes extends Component
 
     public function teste2(string|int $objectID)
     {
-        $arte = Arte::findOrFail($objectID);
-        
-        $teste = new ArteResource($arte);
-        return ($teste);
+        $arte = new ArteResource(Arte::findOrFail($objectID));
+
+        return ($arte);
     }
 
     public function teste()
     {
-        $artes = Arte::paginate(2);
+        $artes = Arte::paginate(1);
         
         $teste = ArteResource::collection($artes);
         return ($teste);
@@ -40,20 +39,38 @@ class IndexArtes extends Component
             'creditLine',
         ]);
 
-        return view ('livewire.artes.show-arte', compact('arte'));
+        $pivot = $arte->artistas()->select('constituentID','displayName')->get();
+
+        return view ('livewire.artes.show-arte', compact('arte', 'pivot'));
     }
     
     public function render()
     {
-        $artes = Arte::where('title', 'ilike', '%' . $this->search . '%')
-            ->orderBy('objectID', 'desc')->paginate(4);
-
-        $teste = ArteResource::collection($artes);
-
-        return view('livewire.artes.index-artes',
+        return view('livewire.artes.index-artes', 
             [
-                'artes' => $teste
+                'artes' => Arte::select([
+                        'objectID',
+                        'title',
+                        'classification',
+                        'medium',
+                        'department'
+                    ])
+                    ->where('title', 'ilike', '%' . $this->search . '%')
+                    ->orderBy('objectID', 'desc')
+                    ->paginate(4),
             ]
         );
+
+        // $artes = Arte::where('title', 'ilike', '%' . $this->search . '%')
+        //     ->orderBy('objectID', 'desc')->paginate(4);
+
+        // $teste = ArteResource::collection($artes);
+
+        // return view('livewire.artes.index-artes', 
+        //     [
+        //         'artes' => $teste
+        //     ]
+        // );
+
     }
 }
